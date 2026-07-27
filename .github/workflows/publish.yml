@@ -47,7 +47,9 @@ jobs:
         run: dotnet pack Gui.SystemDialogs.Sharp.slnx -c Release -o artifacts/packages -p:Version=${{ steps.version.outputs.value }}
 
       - name: Publish to NuGet.org
+        shell: bash
         run: dotnet nuget push artifacts/packages/*.nupkg --source https://api.nuget.org/v3/index.json --api-key ${{ secrets.NUGET_API_KEY }} --skip-duplicate
 
       - name: Publish symbols
+        shell: bash
         run: dotnet nuget push artifacts/packages/*.snupkg --source https://api.nuget.org/v3/index.json --api-key ${{ secrets.NUGET_API_KEY }} --skip-duplicate
