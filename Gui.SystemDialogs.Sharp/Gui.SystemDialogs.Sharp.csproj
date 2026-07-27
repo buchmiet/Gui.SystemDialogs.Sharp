@@ -1,0 +1,9 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net$(GuiSystemDialogsNetVersion)</TargetFramework>
+    <Description>Framework-neutral contracts for local file, folder, and application-exit system dialogs.</Description>
+    <PackageTags>$(PackageTags);contracts</PackageTags>
+  </PropertyGroup>
+
+</Project>

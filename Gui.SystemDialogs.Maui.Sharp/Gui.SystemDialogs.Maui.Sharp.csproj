@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net$(GuiSystemDialogsNetVersion)-windows$(GuiSystemDialogsWindowsSdkVersion)</TargetFramework>
+    <TargetPlatformMinVersion>$(GuiSystemDialogsWindowsMinVersion)</TargetPlatformMinVersion>
+    <SupportedOSPlatformVersion>$(GuiSystemDialogsWindowsMinVersion)</SupportedOSPlatformVersion>
+    <RootNamespace>Gui.SystemDialogs.Maui.Sharp</RootNamespace>
+    <Win2DWarnNoPlatform>false</Win2DWarnNoPlatform>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <Description>Windows-targeted .NET MAUI implementation of Gui.SystemDialogs.Sharp services.</Description>
+    <PackageTags>$(PackageTags);maui;windows</PackageTags>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Maui.Essentials" Version="10.0.80" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Gui.SystemDialogs.Sharp\Gui.SystemDialogs.Sharp.csproj" />
+    <ProjectReference Include="..\Gui.SystemDialogs.Windows.Sharp\Gui.SystemDialogs.Windows.Sharp.csproj" />
+  </ItemGroup>
+
+</Project>

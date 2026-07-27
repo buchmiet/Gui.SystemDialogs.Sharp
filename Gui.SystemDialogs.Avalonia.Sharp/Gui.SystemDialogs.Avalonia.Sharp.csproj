@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net$(GuiSystemDialogsNetVersion)</TargetFramework>
+    <Description>Avalonia 12 implementation of Gui.SystemDialogs.Sharp file, folder, and exit services.</Description>
+    <PackageTags>$(PackageTags);avalonia</PackageTags>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Gui.SystemDialogs.Sharp\Gui.SystemDialogs.Sharp.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Avalonia" Version="12.1.0" />
+  </ItemGroup>
+
+</Project>

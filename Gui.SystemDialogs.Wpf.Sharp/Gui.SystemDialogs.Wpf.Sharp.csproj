@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net$(GuiSystemDialogsNetVersion)-windows$(GuiSystemDialogsWindowsSdkVersion)</TargetFramework>
+    <TargetPlatformMinVersion>$(GuiSystemDialogsWindowsMinVersion)</TargetPlatformMinVersion>
+    <SupportedOSPlatformVersion>$(GuiSystemDialogsWindowsMinVersion)</SupportedOSPlatformVersion>
+    <UseWPF>true</UseWPF>
+    <RootNamespace>Gui.SystemDialogs.Wpf.Sharp</RootNamespace>
+    <Description>WPF implementation of Gui.SystemDialogs.Sharp file, folder, and exit services.</Description>
+    <PackageTags>$(PackageTags);wpf</PackageTags>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Gui.SystemDialogs.Sharp\Gui.SystemDialogs.Sharp.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net$(GuiSystemDialogsNetVersion)</TargetFramework>
+    <RootNamespace>Gui.SystemDialogs.Consolonia.Sharp</RootNamespace>
+    <Description>Consolonia / Avalonia 11 implementation of Gui.SystemDialogs.Sharp services.</Description>
+    <PackageTags>$(PackageTags);consolonia;avalonia</PackageTags>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Consolonia" Version="11.3.12.6" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Gui.SystemDialogs.Sharp\Gui.SystemDialogs.Sharp.csproj" />
+  </ItemGroup>
+
+</Project>

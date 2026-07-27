@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net$(GuiSystemDialogsNetVersion)</TargetFramework>
+    <RootNamespace>Gui.SystemDialogs.ProGpu.Sharp</RootNamespace>
+    <Description>ProGPU implementation of Gui.SystemDialogs.Sharp file, folder, and exit services.</Description>
+    <PackageTags>$(PackageTags);progpu;winui</PackageTags>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- ProGPU ships its own Microsoft.UI.Xaml.* pickers; do not mix with WindowsAppSDK. -->
+    <PackageReference Include="ProGPU.WinUI" Version="0.1.0-preview.25" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Gui.SystemDialogs.Sharp\Gui.SystemDialogs.Sharp.csproj" />
+  </ItemGroup>
+
+</Project>

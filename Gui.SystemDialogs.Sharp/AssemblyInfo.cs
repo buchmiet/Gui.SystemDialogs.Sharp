@@ -1,0 +1,17 @@
+using System.Runtime.CompilerServices;
+
+[assembly: InternalsVisibleTo("Gui.SystemDialogs.Avalonia.Sharp")]
+[assembly: InternalsVisibleTo("Gui.SystemDialogs.Consolonia.Sharp")]
+[assembly: InternalsVisibleTo("Gui.SystemDialogs.Maui.Sharp")]
+[assembly: InternalsVisibleTo("Gui.SystemDialogs.ProGpu.Sharp")]
+[assembly: InternalsVisibleTo("Gui.SystemDialogs.WinUI.Sharp")]
+[assembly: InternalsVisibleTo("Gui.SystemDialogs.Wpf.Sharp")]
+[assembly: InternalsVisibleTo("Gui.SystemDialogs.Sharp.Tests")]
+[assembly: InternalsVisibleTo("Gui.SystemDialogs.Avalonia.Sharp.Tests")]
+[assembly: InternalsVisibleTo("Gui.SystemDialogs.Consolonia.Sharp.Tests")]
+[assembly: InternalsVisibleTo("Gui.SystemDialogs.Maui.Sharp.Tests")]
+[assembly: InternalsVisibleTo("Gui.SystemDialogs.ProGpu.Sharp.Tests")]
+[assembly: InternalsVisibleTo("Gui.SystemDialogs.WinUI.Sharp.Tests")]
+[assembly: InternalsVisibleTo("Gui.SystemDialogs.Wpf.Sharp.Tests")]
+[assembly: InternalsVisibleTo("Gui.SystemDialogs.Windows.Sharp.Tests")]
+[assembly: InternalsVisibleTo("Gui.SystemDialogs.TestSupport")]

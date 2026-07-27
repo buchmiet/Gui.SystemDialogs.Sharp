@@ -1,0 +1,22 @@
+<Solution>
+  <Folder Name="/tests/">
+    <Project Path="tests/Gui.SystemDialogs.Avalonia.Sharp.Tests/Gui.SystemDialogs.Avalonia.Sharp.Tests.csproj" />
+    <Project Path="tests/Gui.SystemDialogs.Consolonia.Sharp.Tests/Gui.SystemDialogs.Consolonia.Sharp.Tests.csproj" />
+    <Project Path="tests/Gui.SystemDialogs.Maui.Sharp.Tests/Gui.SystemDialogs.Maui.Sharp.Tests.csproj" />
+    <Project Path="tests/Gui.SystemDialogs.ProGpu.Sharp.Tests/Gui.SystemDialogs.ProGpu.Sharp.Tests.csproj" />
+    <Project Path="tests/Gui.SystemDialogs.Sharp.Tests/Gui.SystemDialogs.Sharp.Tests.csproj" />
+    <Project Path="tests/Gui.SystemDialogs.TestSupport/Gui.SystemDialogs.TestSupport.csproj" />
+    <Project Path="tests/Gui.SystemDialogs.Windows.Sharp.Tests/Gui.SystemDialogs.Windows.Sharp.Tests.csproj" />
+    <Project Path="tests/Gui.SystemDialogs.WinUI.Sharp.Tests/Gui.SystemDialogs.WinUI.Sharp.Tests.csproj" />
+    <Project Path="tests/Gui.SystemDialogs.Wpf.Sharp.Tests/Gui.SystemDialogs.Wpf.Sharp.Tests.csproj" />
+    <Project Path="tests/Gui.SystemDialogs.Wpf.Sharp.SmokeTests/Gui.SystemDialogs.Wpf.Sharp.SmokeTests.csproj" />
+  </Folder>
+  <Project Path="Gui.SystemDialogs.Avalonia.Sharp/Gui.SystemDialogs.Avalonia.Sharp.csproj" />
+  <Project Path="Gui.SystemDialogs.Consolonia.Sharp/Gui.SystemDialogs.Consolonia.Sharp.csproj" />
+  <Project Path="Gui.SystemDialogs.Maui.Sharp/Gui.SystemDialogs.Maui.Sharp.csproj" />
+  <Project Path="Gui.SystemDialogs.ProGpu.Sharp/Gui.SystemDialogs.ProGpu.Sharp.csproj" />
+  <Project Path="Gui.SystemDialogs.Sharp/Gui.SystemDialogs.Sharp.csproj" />
+  <Project Path="Gui.SystemDialogs.Windows.Sharp/Gui.SystemDialogs.Windows.Sharp.csproj" />
+  <Project Path="Gui.SystemDialogs.WinUI.Sharp/Gui.SystemDialogs.WinUI.Sharp.csproj" />
+  <Project Path="Gui.SystemDialogs.Wpf.Sharp/Gui.SystemDialogs.Wpf.Sharp.csproj" />
+</Solution>

@@ -1,0 +1,42 @@
+<Project>
+  <PropertyGroup>
+    <!-- Change this single value when upgrading the whole repository. -->
+    <GuiSystemDialogsNetVersion>10.0</GuiSystemDialogsNetVersion>
+
+    <!-- Shared Windows API contract for WinUI, WPF and Windows-only MAUI. -->
+    <GuiSystemDialogsWindowsSdkVersion>10.0.19041.0</GuiSystemDialogsWindowsSdkVersion>
+    <GuiSystemDialogsWindowsMinVersion>10.0.17763.0</GuiSystemDialogsWindowsMinVersion>
+
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+
+    <!-- Pre-release versions use 0.0.x; first public release is planned as 0.1.0. -->
+    <Version>0.0.1</Version>
+    <AssemblyVersion>0.0.0.0</AssemblyVersion>
+    <FileVersion>0.0.0.0</FileVersion>
+
+    <Authors>Lukasz Buchmiet</Authors>
+    <Copyright>Copyright (c) 2026 Lukasz Buchmiet</Copyright>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageProjectUrl>https://github.com/buchmiet/Gui.SystemDialogs.Sharp</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/buchmiet/Gui.SystemDialogs.Sharp.git</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageTags>system-dialogs;file-picker;folder-picker;csharp;dotnet</PackageTags>
+
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <NoWarn>$(NoWarn);CS1591</NoWarn>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <EmbedUntrackedSources>true</EmbedUntrackedSources>
+    <DebugType>portable</DebugType>
+
+    <IsPackable>true</IsPackable>
+  </PropertyGroup>
+
+  <ItemGroup Condition="'$(IsPackable)' == 'true'">
+    <None Include="$(MSBuildThisFileDirectory)README.md" Pack="true" PackagePath="\" />
+    <None Include="$(MSBuildThisFileDirectory)LICENSE" Pack="true" PackagePath="\" />
+  </ItemGroup>
+</Project>

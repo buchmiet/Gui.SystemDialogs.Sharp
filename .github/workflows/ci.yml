@@ -1,0 +1,48 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 10.0.x
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: 3.x
+
+      - name: Verify contract boundary
+        run: python eng/verify-contract-boundary.py
+
+      - name: Restore
+        run: dotnet restore Gui.SystemDialogs.Sharp.slnx
+
+      - name: Build
+        run: dotnet build Gui.SystemDialogs.Sharp.slnx -c Release --no-restore
+
+      - name: Test
+        run: dotnet test Gui.SystemDialogs.Sharp.slnx -c Release --no-build --filter "Category!=Smoke"
+
+      - name: Pack
+        run: dotnet pack Gui.SystemDialogs.Sharp.slnx -c Release --no-build -o artifacts/packages
+
+      - name: Upload packages
+        uses: actions/upload-artifact@v4
+        with:
+          name: nuget-packages
+          path: artifacts/packages/*.nupkg

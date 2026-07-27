@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net$(GuiSystemDialogsNetVersion)</TargetFramework>
+    <IsPackable>false</IsPackable>
+    <IsTestProject>false</IsTestProject>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="xunit.v3.assert" Version="3.2.2" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Gui.SystemDialogs.Sharp\Gui.SystemDialogs.Sharp.csproj" />
+  </ItemGroup>
+</Project>

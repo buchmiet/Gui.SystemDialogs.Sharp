@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net$(GuiSystemDialogsNetVersion)-windows$(GuiSystemDialogsWindowsSdkVersion)</TargetFramework>
+    <TargetPlatformMinVersion>$(GuiSystemDialogsWindowsMinVersion)</TargetPlatformMinVersion>
+    <SupportedOSPlatformVersion>$(GuiSystemDialogsWindowsMinVersion)</SupportedOSPlatformVersion>
+    <RootNamespace>Gui.SystemDialogs.Windows.Sharp</RootNamespace>
+    <Description>Shared Windows helpers for HWND ownership and WinRT file-dialog filter mapping.</Description>
+    <PackageTags>$(PackageTags);windows;winrt</PackageTags>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Gui.SystemDialogs.Sharp\Gui.SystemDialogs.Sharp.csproj" />
+  </ItemGroup>
+
+</Project>
