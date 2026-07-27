@@ -17,7 +17,7 @@ Install only the adapter package for your UI stack. Each adapter depends on the 
 | [Gui.SystemDialogs.ProGpu.Sharp](https://www.nuget.org/packages/Gui.SystemDialogs.ProGpu.Sharp) | ProGPU | `dotnet add package Gui.SystemDialogs.ProGpu.Sharp` |
 | [Gui.SystemDialogs.Windows.Sharp](https://www.nuget.org/packages/Gui.SystemDialogs.Windows.Sharp) | Shared Windows helpers | Usually pulled in transitively by WinUI / MAUI |
 
-> **Versioning:** pre-release packages are published as `0.0.x`. The first public stable release is planned as `0.1.0`.
+> **Versioning:** `0.1.0` is the first public release. Earlier `0.0.x` builds were pre-release validation publishes.
 
 ## Quick start
 
@@ -97,10 +97,10 @@ dotnet test Gui.SystemDialogs.Sharp.slnx -c Release --filter Category!=Smoke
 dotnet pack Gui.SystemDialogs.Sharp.slnx -c Release -o artifacts/packages
 ```
 
-The default local version is `0.0.1` (see `Directory.Build.props`). Override for a dry run:
+The default local version is `0.1.0` (see `Directory.Build.props`). Override for a dry run:
 
 ```text
-dotnet pack Gui.SystemDialogs.Sharp.slnx -c Release -o artifacts/packages -p:Version=0.0.2
+dotnet pack Gui.SystemDialogs.Sharp.slnx -c Release -o artifacts/packages -p:Version=0.1.1
 ```
 
 ### Native WPF smoke tests (manual / nightly)
@@ -117,8 +117,8 @@ dotnet test tests/Gui.SystemDialogs.Wpf.Sharp.SmokeTests -c Release
 CI runs on every push and pull request to `main`. Packages are published to NuGet.org when a version tag is pushed:
 
 ```text
-git tag v0.0.2
-git push origin v0.0.2
+git tag v0.1.1
+git push origin v0.1.1
 ```
 
 Set the `NUGET_API_KEY` secret in the GitHub `nuget` environment before the first publish.
