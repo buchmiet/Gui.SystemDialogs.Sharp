@@ -9,11 +9,31 @@
 
   <ItemGroup>
     <!-- ProGPU ships its own Microsoft.UI.Xaml.* pickers; do not mix with WindowsAppSDK. -->
-    <PackageReference Include="ProGPU.WinUI" Version="0.1.0-preview.25" />
+    <PackageReference Include="ProGPU.WinUI" Version="0.1.0-preview.28" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Gui.SystemDialogs.Sharp\Gui.SystemDialogs.Sharp.csproj" />
   </ItemGroup>
+
+  <!--
+    This package always ships as a prerelease, even on a release tag: ProGPU.WinUI has no stable
+    release yet, and an adapter cannot honestly be more stable than what it binds to. Marking the
+    package prerelease is what NU5104 asks for, so the warning resolves at its cause rather than
+    being suppressed.
+
+    Releases stay in lockstep with the rest of the repository: tag v0.1.2 publishes seven packages
+    as 0.1.2 and this one as 0.1.2-preview. The condition leaves untagged builds alone, where MinVer
+    already produces a prerelease.
+
+    To retire this once ProGPU.WinUI ships a stable version: bump the PackageReference above and
+    delete this target. The package then rejoins the shared version with no other change.
+  -->
+  <Target Name="ProGpuAlwaysPreRelease" AfterTargets="MinVer" Condition="'$(MinVerPreRelease)' == ''">
+    <PropertyGroup>
+      <Version>$(MinVerVersion)-preview</Version>
+      <PackageVersion>$(Version)</PackageVersion>
+    </PropertyGroup>
+  </Target>
 
 </Project>

@@ -7,8 +7,10 @@ on:
   workflow_dispatch:
     inputs:
       version:
-        description: Package version to publish (for example 0.0.2)
-        required: true
+        description: >-
+          Emergency override, bypassing the tag (for example 0.1.2). Normally leave this empty and
+          publish by pushing a tag; MinVer then derives the version from that tag.
+        required: false
         type: string
 
 jobs:
@@ -19,6 +21,10 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          # MinVer needs the full history and all tags to resolve a version; a shallow clone
+          # silently yields 0.0.0-alpha.0.
+          fetch-depth: 0
 
       - name: Setup .NET
         uses: actions/setup-dotnet@v4
@@ -34,21 +40,66 @@ jobs:
         id: version
         shell: bash
         run: |
-          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+          if [ -n "${{ inputs.version }}" ]; then
             echo "value=${{ inputs.version }}" >> "$GITHUB_OUTPUT"
+            echo "override=true" >> "$GITHUB_OUTPUT"
           else
             echo "value=${GITHUB_REF#refs/tags/v}" >> "$GITHUB_OUTPUT"
+            echo "override=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Verify release notes
+        shell: bash
+        run: |
+          version='${{ steps.version.outputs.value }}'
+          if ! grep -q "^## \[$version\]" CHANGELOG.md; then
+            echo "CHANGELOG.md has no '## [$version]' entry; write the release notes before publishing."
+            exit 1
           fi
 
       - name: Verify contract boundary
         run: python eng/verify-contract-boundary.py
 
+      - name: Build
+        run: dotnet build Gui.SystemDialogs.Sharp.slnx -c Release
+
+      - name: Test
+        run: dotnet test Gui.SystemDialogs.Sharp.slnx -c Release --no-build --filter "Category!=Smoke"
+
+      # No -p:Version here: MinVer derives it from the tag, so the tag is the single source of truth.
+      # The manual override exists only for the workflow_dispatch escape hatch.
       - name: Pack
-        run: dotnet pack Gui.SystemDialogs.Sharp.slnx -c Release -o artifacts/packages -p:Version=${{ steps.version.outputs.value }}
+        shell: bash
+        run: |
+          if [ "${{ steps.version.outputs.override }}" = "true" ]; then
+            dotnet pack Gui.SystemDialogs.Sharp.slnx -c Release --no-build -o artifacts/packages \
+              -p:MinVerVersionOverride='${{ steps.version.outputs.value }}'
+          else
+            dotnet pack Gui.SystemDialogs.Sharp.slnx -c Release --no-build -o artifacts/packages
+          fi
+
+      - name: Verify packed version
+        shell: bash
+        run: |
+          version='${{ steps.version.outputs.value }}'
+          expected="artifacts/packages/Gui.SystemDialogs.Sharp.$version.nupkg"
+          if [ ! -f "$expected" ]; then
+            echo "Expected $expected but pack produced:"
+            ls -1 artifacts/packages
+            exit 1
+          fi
+          # ProGPU ships as a prerelease for as long as ProGPU.WinUI is prerelease-only; see the
+          # ProGpuAlwaysPreRelease target. Fail loudly if that exception is ever dropped silently.
+          progpu_stable="artifacts/packages/Gui.SystemDialogs.ProGpu.Sharp.$version.nupkg"
+          if [ -f "$progpu_stable" ]; then
+            echo "Gui.SystemDialogs.ProGpu.Sharp was packed as stable $version, but it must ship as a"
+            echo "prerelease while it depends on a prerelease ProGPU.WinUI. See its .csproj."
+            exit 1
+          fi
 
       - name: Publish to NuGet.org
         shell: bash
-        run: dotnet nuget push artifacts/packages/*.nupkg --source https://api.nuget.org/v3/index.json --api-key ${{ secrets.NUGET_API_KEY }} --skip-duplicate
+        run: dotnet nuget push artifacts/packages/*.nupkg --source https://api.nuget.org/v3/index.json --api-key ${{ secrets.NUGET_API_KEY }}
 
       - name: Publish symbols
         shell: bash

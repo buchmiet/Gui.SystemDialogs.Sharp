@@ -4,6 +4,16 @@ using FileDialogFilter = Gui.SystemDialogs.Sharp.FileDialogFilter;
 
 namespace Gui.SystemDialogs.Consolonia.Sharp;
 
+/// <summary>
+/// Maps neutral filters onto Avalonia storage types as seen through Consolonia.
+/// <para>
+/// Near-identical to <c>AvaloniaFilePickerMapper</c> on purpose — both target
+/// <c>IStorageProvider</c>, but this project tracks Avalonia 11.x by way of Consolonia while the
+/// Avalonia adapter tracks 12.x. The two must be free to diverge when either major moves, so the
+/// duplication stays. Behavioural agreement is enforced by <c>FilterMappingConformance</c>, not by
+/// sharing code.
+/// </para>
+/// </summary>
 internal static class ConsoloniaFilePickerMapper
 {
     public static IReadOnlyList<FilePickerFileType> ToFilePickerTypes(IReadOnlyList<FileDialogFilter> filters)
@@ -25,7 +35,10 @@ internal static class ConsoloniaFilePickerMapper
             });
         }
 
-        if (result.Count == 0 || result.All(static t => !IsAllFiles(t)))
+        // Caller-supplied filters are passed through verbatim: an "all files" entry the caller
+        // did not ask for cannot be removed through the neutral contract. The fallback applies
+        // only to the degenerate case where no constraint was expressed at all.
+        if (result.Count == 0)
         {
             result.Add(FilePickerFileTypes.All);
         }
